@@ -1,0 +1,70 @@
+@use './colors' as *;
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: $primary-color;
+
+  &__logo {
+    font-size: 24px;
+
+    &-title{
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  }
+
+  &__nav{
+    display: flex;
+    gap: 20px;
+
+    &-item{
+      color: #fff;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      display: none;  // Скрыть навигацию на экранах меньше 600px
+    }
+  }
+
+  &__login{
+    display: flex;
+    gap: 10px;
+
+    &-login {
+      background: none;
+      border: none;
+      color: #fff;
+    }
+
+    &-signup{
+      padding: 10px;
+      border-radius: 25px;
+      border: none;
+    }
+
+    @media (max-width: 600px) {
+      display: none;
+    }
+  }
+
+  &__burger {
+    display: none;
+
+    @media (max-width: 600px) {
+      display: block;
+    }
+  }
+}
+
+.container {
+  width: 1220px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
