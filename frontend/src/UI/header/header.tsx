@@ -32,13 +32,13 @@ const Header = () => {
                     color="inherit"
                     aria-label="menu"
                     onClick={toggleDrawer}
-                    sx={{display: {xs: 'block', md: 'none'}}}
+                    sx={{display: {xs: 'block', sm: 'none'}}}
                 >
                     <MenuIcon sx={{ color: 'white' }} fontSize="large"/>
                 </IconButton>
 
                 <Drawer
-                    anchor="right"
+                    anchor="left"
                     open={openDrawer}
                     onClose={toggleDrawer}
                 >
