@@ -1,11 +1,18 @@
 import './App.css'
-import Header from "./UI/header/header.tsx";
 import './styles/main.scss';
+import Layout from "./UI/layout/layout.tsx";
+import {Route, Routes} from "react-router-dom";
+import AuthForm from "./features/auth/components/AuthForm.tsx";
 
 const App = () => {
     return (
         <>
-            <Header />
+            <Layout>
+                <Routes>
+                    <Route path="/login" element={<AuthForm />} />
+                    <Route path="/signup" element={<AuthForm />} />
+                </Routes>
+            </Layout>
         </>
     )
 };

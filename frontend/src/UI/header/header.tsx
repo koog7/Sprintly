@@ -22,8 +22,12 @@ const Header = () => {
                     <p className={'header__nav-item'}>FAQ</p>
                 </div>
                 <div className={'header__login'}>
-                    <button className={'header__login-login'}>Авторизоваться</button>
-                    <button className={'header__login-signup'}>Регистрация</button>
+                    <Link to="/login" className={'header__login-login'}>
+                        Авторизоваться
+                    </Link>
+                    <Link to="/signup" className={'header__login-signup'}>
+                        Регистрация
+                    </Link>
                 </div>
 
                 <IconButton

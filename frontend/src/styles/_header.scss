@@ -19,10 +19,17 @@
   &__nav{
     display: flex;
     gap: 20px;
+    cursor: pointer;
 
     &-item{
       color: #fff;
       font-size: 14px;
+
+      &:hover{
+        text-decoration:  underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 4px;
+      }
     }
 
     @media (max-width: 600px) {
@@ -32,18 +39,37 @@
 
   &__login{
     display: flex;
+    align-items: center;
     gap: 10px;
 
     &-login {
       background: none;
       border: none;
       color: #fff;
+      text-decoration: none;
+
+      &:hover{
+        text-decoration:  underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 4px;
+      }
     }
 
     &-signup{
       padding: 10px;
       border-radius: 25px;
       border: none;
+      background: white;
+      text-decoration: none;
+      color: black;
+
+
+      &:hover{
+        transition: 0.2s;
+        -webkit-box-shadow: 1px -2px 22px -7px rgba(0,0,0,1);
+        -moz-box-shadow: 1px -2px 22px -7px rgba(0,0,0,1);
+        box-shadow: 1px -2px 22px -7px rgba(0,0,0,1);
+      }
     }
 
     @media (max-width: 600px) {
