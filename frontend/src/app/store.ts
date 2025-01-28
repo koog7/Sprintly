@@ -3,6 +3,7 @@ import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import {persistReducer, persistStore} from 'redux-persist';
 import {UserReducer} from "../features/auth/userSlice.ts";
 import {FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE} from "redux-persist/es/constants";
+import {useDispatch, useSelector} from "react-redux";
 
 const userPersistConfig = {
     key: 'sprintly:user',
@@ -28,3 +29,5 @@ export const persistor = persistStore(store)
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+export const useAppSelector = useSelector.withTypes<RootState>();
+export const useAppDispatch = () => useDispatch<AppDispatch>();

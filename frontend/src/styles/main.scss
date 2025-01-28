@@ -1,2 +1,11 @@
 @use './header' as *;
 @use './auth' as *;
+
+.container {
+  width: 1220px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
