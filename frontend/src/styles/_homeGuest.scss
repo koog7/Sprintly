@@ -1,0 +1,57 @@
+@use './colors' as *;
+
+.home-guest{
+
+  &-container{
+    padding-top: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+
+    @media (max-width: 600px) {
+      padding-top: 0;
+      flex-direction: column;
+    }
+  }
+
+  &__title{
+    width: 40%;
+
+    &-green{
+      color: $primary-color;
+    }
+
+    @media (max-width: 600px) {
+      width: 80%;
+      text-align: center;
+    }
+  }
+
+  &__image{
+    flex: 1;
+    width: 50%;
+
+    &-ticket{
+      width: 80%;
+      max-width: 100%;
+
+      @media (max-width: 900px) {
+        margin-left: 7%;
+        max-width: 80%;
+      }
+
+      @media (max-width: 600px) {
+        margin: 0;
+        width: 300px;
+        height: auto;
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 600px) {
+      margin: 0;
+      width: 300px;
+    }
+  }
+}

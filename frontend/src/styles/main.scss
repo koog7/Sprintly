@@ -1,5 +1,7 @@
 @use './header' as *;
 @use './auth' as *;
+@use './homeUser' as *;
+@use './homeGuest' as *;
 
 .container {
   width: 1220px;
