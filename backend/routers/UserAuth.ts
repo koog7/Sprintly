@@ -1,4 +1,4 @@
-import express, { Request, Response, NextFunction } from "express";
+import express from "express";
 import User from "../models/UserModel";
 import {randomUUID} from "node:crypto";
 import mongoose from "mongoose";

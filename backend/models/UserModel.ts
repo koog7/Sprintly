@@ -15,6 +15,10 @@ const UsersSchema = new Schema({
         type: String,
         required: true,
     },
+    activeGroups: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Project'
+    }],
     token:{
         type: String,
         required: true,
