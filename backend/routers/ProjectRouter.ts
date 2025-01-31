@@ -1,6 +1,5 @@
 import express from "express";
 import auth, {RequestWithUser} from "../middleware/auth";
-import {randomUUID} from "node:crypto";
 import Project from "../models/ProjectModel";
 import User from "../models/UserModel";
 
@@ -10,6 +9,7 @@ ProjectRouter.use(express.json());
 ProjectRouter.post('/create', auth, async (req: RequestWithUser, res, next) => {
     try {
         const newProject = new Project({
+            owner: req.user?._id,
             name: req.body.name,
             description: req.body.description ? req.body.description : 'No description',
             activeUser: [req.user?._id],
@@ -41,7 +41,11 @@ ProjectRouter.post('/accept-invite/:id', auth, async (req: RequestWithUser, res,
             return res.status(400).send({error: 'Код приглашение не корректный.'})
         }
 
-        const checkAttendance = await User.find({activeGroups: req.user?._id})
+        if(findGroup.availablePlace < 0){
+            return res.status(400).send({error: 'В группе уже максимальное количество участников.'});
+        }
+
+        const checkAttendance = await User.find({activeGroups: findGroup?._id})
         console.log(checkAttendance)
         if (checkAttendance.length !== 0) {
             return res.status(400).send({error: 'Вы уже в этой группе.'});
@@ -54,7 +58,10 @@ ProjectRouter.post('/accept-invite/:id', auth, async (req: RequestWithUser, res,
 
         await Project.updateOne(
             {_id: findGroup?._id},
-            {$push: {activeUser: req.user?._id}}
+            {
+                $push: {activeUser: req.user?._id},
+                $inc: {availablePlace: -1}
+            }
         );
 
         res.status(200).send('succsess')

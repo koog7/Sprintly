@@ -5,12 +5,15 @@ import {randomUUID} from "node:crypto";
 const Schema = mongoose.Schema;
 
 const ProjectSchema = new Schema({
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+    },
     name: {
         required: true,
         type: String,
     },
     description: {
-        required: true,
         type: String,
     },
     activeUser:[{
