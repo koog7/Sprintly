@@ -33,57 +33,43 @@ const Header = () => {
                         </Link>
                     </div>
                 ) : (
-                    <div className={'header__hello'}>
-                        Добрый день! {user.username}
-                    </div>
+                    <>
+                        <IconButton
+                            edge="start"
+                            className={'header__burger'}
+                            color="inherit"
+                            aria-label="menu"
+                            onClick={toggleDrawer}
+                        >
+                            <MenuIcon sx={{color: 'white'}} fontSize="large"/>
+                        </IconButton>
+
+                        <Drawer
+                            anchor="right"
+                            open={openDrawer}
+                            onClose={toggleDrawer}
+                        >
+                            <List sx={{width: '250px'}}>
+                                <div>
+                                    {user && (
+                                        <p style={{padding: '5px 0 0 15px'}} className={'header__burger-hello'}>
+                                            <span style={{fontWeight: 'bold'}}>Добрый день!</span> {user.username}
+                                        </p>
+                                    )}
+                                    <ListItemButton component={Link} to="/about">
+                                        <ListItemText primary="Последние новости"/>
+                                    </ListItemButton>
+                                    <ListItemButton component={Link} to="/about">
+                                        <ListItemText primary="О нас"/>
+                                    </ListItemButton>
+                                    <ListItemButton component={Link} to="/about">
+                                        <ListItemText primary="FAQ"/>
+                                    </ListItemButton>
+                                </div>
+                            </List>
+                        </Drawer>
+                    </>
                 )}
-
-                <IconButton
-                    edge="start"
-                    className={'header__burger'}
-                    color="inherit"
-                    aria-label="menu"
-                    onClick={toggleDrawer}
-                    sx={{display: {xs: 'block', sm: 'none'}}}
-                >
-                <MenuIcon sx={{ color: 'white' }} fontSize="large"/>
-                </IconButton>
-
-                <Drawer
-                    anchor="left"
-                    open={openDrawer}
-                    onClose={toggleDrawer}
-                >
-                    <List sx={{width: '200px'}}>
-                        <div>
-                            {user && (
-                                <p style={{padding:'5px 0 0 15px'}} className={'header__burger-hello'}>
-                                    <span style={{fontWeight:'bold'}}>Добрый день!</span> {user.username}
-                                </p>
-                            )}
-                            <ListItemButton component={Link} to="/about">
-                                <ListItemText primary="Последние новости" />
-                            </ListItemButton>
-                            <ListItemButton component={Link} to="/about">
-                                <ListItemText primary="О нас" />
-                            </ListItemButton>
-                            <ListItemButton component={Link} to="/about">
-                                <ListItemText primary="FAQ" />
-                            </ListItemButton>
-                        </div>
-                        <div>
-                            {!user? <div>
-                                <ListItemButton className={'header__login-login'} component={Link} to="/about">
-                                    <ListItemText primary="Авторизоваться" />
-                                </ListItemButton>
-                                <ListItemButton className={'header__login-signin'} component={Link} to="/about">
-                                    <ListItemText primary="Регистрация" />
-                                </ListItemButton>
-                            </div> : <></>}
-
-                        </div>
-                    </List>
-                </Drawer>
             </div>
         </div>
     );

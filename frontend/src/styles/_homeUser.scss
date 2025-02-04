@@ -14,7 +14,35 @@
       @media (max-width: 650px) {
         flex-direction: column;
         align-items: center;
+        margin: 10px 0;
       }
     }
+  }
+
+  &__title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &_btn {
+      display: flex;
+      flex-direction: row;
+
+      button{
+        width: 100%;
+        max-width: 270px;
+      }
+
+      @media (max-width: 425px) {
+        flex-direction: column;
+        gap: 10px;
+        margin: 10px 0;
+      }
+    }
+
+    &_btn button:not(:last-child) {
+      margin-right: 15px;
+    }
+
   }
 }
