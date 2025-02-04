@@ -6,6 +6,15 @@ import User from "../models/UserModel";
 const ProjectRouter = express.Router();
 ProjectRouter.use(express.json());
 
+ProjectRouter.get('/myProjects', auth , async (req: RequestWithUser, res) => {
+    const user = await User.findOne({_id: req.user?._id}).populate('activeGroups' , 'name description inviteCode availablePlace')
+
+    if (!user) return res.status(404).json({ message: "Пользователь не найден" });
+
+    const { token , password, ...userWithoutToken } = user?.toObject();
+    res.status(200).send(userWithoutToken)
+})
+
 ProjectRouter.post('/create', auth, async (req: RequestWithUser, res, next) => {
     try {
         const newProject = new Project({
@@ -64,7 +73,7 @@ ProjectRouter.post('/accept-invite/:id', auth, async (req: RequestWithUser, res,
             }
         );
 
-        res.status(200).send('succsess')
+        res.status(200).send('success')
 
 
         //return res.status(301).redirect(`http://localhost:8000/project/${findGroup?._id}`)

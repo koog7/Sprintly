@@ -4,6 +4,7 @@ import {persistReducer, persistStore} from 'redux-persist';
 import {UserReducer} from "../features/auth/userSlice.ts";
 import {FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE} from "redux-persist/es/constants";
 import {useDispatch, useSelector} from "react-redux";
+import {HomeReducer} from "../features/home/homeSlice.ts";
 
 const userPersistConfig = {
     key: 'sprintly:user',
@@ -13,6 +14,7 @@ const userPersistConfig = {
 
 const rootReducer = combineReducers({
     User: persistReducer(userPersistConfig, UserReducer),
+    Home: HomeReducer,
 });
 
 export const store = configureStore({
