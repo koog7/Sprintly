@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {loginUser} from "./userThunk.ts";
+import {authUser, loginUser} from "./userThunk.ts";
 
 interface UserData {
     username: string;
@@ -36,7 +36,22 @@ export const userSlice = createSlice({
             state.loader = false;
             state.error = action.payload as string;
         })
+
+        builder.addCase(authUser.pending , (state: UserState) => {
+            state.loader = true;
+            state.error = null
+        })
+        builder.addCase(authUser.fulfilled , (state: UserState, action) => {
+            state.user = action.payload;
+            state.loader = false;
+            state.error = null;
+        })
+        builder.addCase(authUser.rejected , (state: UserState , action) => {
+            state.loader = false;
+            state.error = action.payload as string;
+        })
     },
+
 })
 
 export const selectUser = (state: { User: UserState }) => state.User.user;

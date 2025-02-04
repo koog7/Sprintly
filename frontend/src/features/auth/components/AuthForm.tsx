@@ -1,6 +1,6 @@
 import {useLocation, useNavigate} from "react-router-dom";
 import React, {useState} from "react";
-import {loginUser} from "../userThunk.ts";
+import {authUser, loginUser} from "../userThunk.ts";
 import {useAppDispatch} from "../../../app/store.ts";
 
 interface UserData {
@@ -24,7 +24,11 @@ const AuthForm = () => {
 
     const submitData = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        dispatch(loginUser(userData))
+
+        if(location.pathname === '/login'){
+            dispatch(loginUser(userData))
+        }
+        dispatch(authUser(userData))
         navigate('/')
     }
 
