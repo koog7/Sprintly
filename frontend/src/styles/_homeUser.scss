@@ -29,8 +29,12 @@
       flex-direction: row;
 
       button{
-        width: 100%;
-        max-width: 270px;
+
+
+        @media (max-width: 425px) {
+          width: 100%;
+          max-width: 280px;
+        }
       }
 
       @media (max-width: 425px) {
