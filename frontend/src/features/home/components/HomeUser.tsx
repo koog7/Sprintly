@@ -1,24 +1,27 @@
 import {Divider} from "@mui/material";
-import ProjectCard from "./ProjectCard.tsx";
 import Container from "@mui/material/Container";
 import {useEffect, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../../app/store.ts";
 import {getProject} from "../homeThunk.ts";
+import {Button, CloseButton, Input, Modal} from '@mantine/core';
+import {useDisclosure} from '@mantine/hooks';
 import {selectProjects} from "../homeSlice.ts";
-import { Input,Modal,Button,CloseButton } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
-//import { IconAt } from '@tabler/icons-react';
+import DashboardCard from "./DashboardCard.tsx";
+import NoDataMsg from "./noDataMsg.tsx";
 
 const HomeUser = () => {
     const dispatch = useAppDispatch();
-    const [opened, { open, close }] = useDisclosure(false);
+    const [opened, {open, close}] = useDisclosure(false);
     const [value, setValue] = useState('');
     useEffect(() => {
         dispatch(getProject())
     }, [dispatch]);
 
-    //const project = useAppSelector(selectProjects);
-
+    const project = useAppSelector(selectProjects);
+    useEffect(() => {
+        console.log(project)
+    }, [project]);
+    // @ts-ignore
     return (
         <div className="home-user">
             <Container maxWidth="lg">
@@ -54,8 +57,19 @@ const HomeUser = () => {
                 <div className={'home-user__cards'}>
                     <p>Недавние проекты</p>
                     <div className={'home-user__cards-content'}>
-                        <ProjectCard/>
-                        <ProjectCard/>
+                        {project && project.activeGroups && project.activeGroups.length > 0 ?(
+                            project.activeGroups.map((group) => (
+                                <DashboardCard
+                                    key={group._id}
+                                    name={group.name}
+                                    description={group.description}
+                                    inviteCode={group.inviteCode}
+                                    availablePlace={group.availablePlace}
+                                />
+                            ))
+                        ) : (
+                                <NoDataMsg />
+                            )}
                     </div>
                 </div>
             </Container>

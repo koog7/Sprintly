@@ -5,12 +5,15 @@ import {Route, Routes} from "react-router-dom";
 import AuthForm from "./features/auth/components/AuthForm.tsx";
 import Home from "./features/home/Home.tsx";
 import '@mantine/core/styles.css';
+import '@mantine/notifications/styles.css';
 import { MantineProvider } from '@mantine/core';
+import {Notifications} from "@mantine/notifications";
 
 const App = () => {
     return (
         <>
             <MantineProvider>
+                <Notifications />
                 <Layout>
                     <Routes>
                         <Route path="/" element={<Home />} />

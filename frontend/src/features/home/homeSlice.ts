@@ -2,20 +2,20 @@ import {createSlice} from "@reduxjs/toolkit";
 import {getProject} from "./homeThunk.ts";
 import {RootState} from "../../app/store.ts";
 
-interface HomeData{
+export interface HomeData{
     _id: string;
     username: string;
-    activeGroup: [{
+    activeGroups: [{
         _id: string;
         name: string;
         description: string;
-        avaiblePlace: number;
+        availablePlace: number;
         inviteCode: string;
     }],
 }
 
 interface HomeState {
-    projects: HomeData[] | null;
+    projects: HomeData | null;
     loader: boolean;
     error: string | null;
 }

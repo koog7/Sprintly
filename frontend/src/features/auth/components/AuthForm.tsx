@@ -38,8 +38,6 @@ const AuthForm = () => {
         <div className="auth">
             <h1>{location.pathname === '/login' ? 'Войти в систему' : 'Регистрация'}</h1>
             <form className="auth__form" onSubmit={submitData}>
-
-                {/*<input className={'auth__form-input'} type="text" name="username" placeholder="Никнейм" onChange={fillData} value={userData.username} required />*/}
                 <Input
                     name="username"
                     placeholder="Никнейм"
@@ -47,8 +45,7 @@ const AuthForm = () => {
                     onChange={fillData}
                     required
                 />
-                {/*<input className={'auth__form-input'} type="password" name="password" placeholder="Пароль" onChange={fillData} value={userData.password} required/>*/}
-                <PasswordInput
+               <PasswordInput
                     name="password"
                     placeholder="Пароль"
                     value={userData.password}
