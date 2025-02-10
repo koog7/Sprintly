@@ -1,8 +1,8 @@
 import React from "react";
 import Box from "@mui/material/Box";
-import { CardActions, CardContent, Typography} from "@mui/material";
-import { CopyButton, Button } from '@mantine/core';
-import { IconLink } from '@tabler/icons-react';
+import {CardActions, CardContent, Typography} from "@mui/material";
+import {Button, CopyButton} from '@mantine/core';
+import {IconLink} from '@tabler/icons-react';
 import {notifications} from "@mantine/notifications";
 
 interface IDashboardCard {
@@ -35,7 +35,7 @@ const DashboardCard: React.FC<IDashboardCard> = ({name , description , available
                         <br/>
                     </Typography>
                 </CardContent>
-                <CardActions>
+                <CardActions style={{display:'flex' , justifyContent:'space-between'}}>
                     <Button variant="outline" color="green" >Дашборд</Button>
                     <CopyButton value={inviteCode as string}>
                         {({ copied, copy }) => (

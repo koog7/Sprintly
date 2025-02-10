@@ -34,13 +34,11 @@ export const homeSlice = createSlice({
         builder.addCase(getProject.pending , (state: HomeState) => {
             state.loader = true;
             state.error = null
-        })
-        builder.addCase(getProject.fulfilled , (state: HomeState, action) => {
+        }).addCase(getProject.fulfilled , (state: HomeState, action) => {
             state.projects = action.payload;
             state.loader = false;
             state.error = null
-        })
-        builder.addCase(getProject.rejected , (state: HomeState, action) => {
+        }).addCase(getProject.rejected , (state: HomeState, action) => {
             state.loader = true;
             state.error = action.payload as string;
         })

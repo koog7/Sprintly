@@ -4,7 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #82c91e;
+  background: #7bca21; //#82c91e
   opacity: 85%;
 
   &__logo {
@@ -24,7 +24,7 @@
 
     &-item{
       color: #fff;
-      font-size: 14px;
+      font-size: 18px;
 
       &:hover{
         text-decoration:  underline;

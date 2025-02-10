@@ -1,49 +1,31 @@
 import {Divider} from "@mui/material";
 import Container from "@mui/material/Container";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {useAppDispatch, useAppSelector} from "../../../app/store.ts";
 import {getProject} from "../homeThunk.ts";
-import {Button, CloseButton, Input, Modal} from '@mantine/core';
+import {Button} from '@mantine/core';
 import {useDisclosure} from '@mantine/hooks';
 import {selectProjects} from "../homeSlice.ts";
 import DashboardCard from "./DashboardCard.tsx";
 import NoDataMsg from "./noDataMsg.tsx";
+import JoinProjectModal from "./JoinProjectModal.tsx";
 
 const HomeUser = () => {
     const dispatch = useAppDispatch();
-    const [opened, {open, close}] = useDisclosure(false);
-    const [value, setValue] = useState('');
+    const [opened, { open, close }] = useDisclosure(false);
+
     useEffect(() => {
-        dispatch(getProject())
+        dispatch(getProject());
     }, [dispatch]);
 
     const project = useAppSelector(selectProjects);
-    useEffect(() => {
-        console.log(project)
-    }, [project]);
-    // @ts-ignore
+
     return (
         <div className="home-user">
             <Container maxWidth="lg">
-                <Modal opened={opened} onClose={close} title="Вступление по коду">
-                    <Input
-                        placeholder="Код приглашения"
-                        value={value}
-                        onChange={(event) => setValue(event.currentTarget.value)}
-                        rightSectionPointerEvents="all"
-                        mt="md"
-                        rightSection={
-                            <CloseButton
-                                aria-label="Clear input"
-                                onClick={() => setValue('')}
-                                style={{display: value ? undefined : 'none'}}
-                            />
-                        }
-                    />
-                    <div style={{display: 'flex', justifyContent: 'center', marginTop: '20px'}}>
-                        <Button variant="filled" color="lime" onClick={open}>Вступить</Button>
-                    </div>
-                </Modal>
+
+                <JoinProjectModal opened={opened} onClose={close} />
+
                 <div className={'home-user__title'}>
                     <div>
                         <h2>Ваша работа</h2>
