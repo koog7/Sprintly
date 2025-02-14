@@ -54,9 +54,12 @@ ProjectRouter.post('/accept-invite/:id', auth, async (req: RequestWithUser, res,
             return res.status(400).send({error: 'В группе уже максимальное количество участников.'});
         }
 
-        const checkAttendance = await User.find({activeGroups: findGroup?._id})
-        console.log(checkAttendance)
-        if (checkAttendance.length !== 0) {
+        const checkAttendance = await User.findOne({
+            _id: req.user?._id,
+            activeGroups: findGroup?._id
+        });
+
+        if (checkAttendance) {
             return res.status(400).send({error: 'Вы уже в этой группе.'});
         }
 
@@ -73,10 +76,9 @@ ProjectRouter.post('/accept-invite/:id', auth, async (req: RequestWithUser, res,
             }
         );
 
-        res.status(200).send('success')
+        const user = await User.findOne({_id: req.user?._id}).populate('activeGroups' , 'name description inviteCode availablePlace')
 
-
-        //return res.status(301).redirect(`http://localhost:8000/project/${findGroup?._id}`)
+        res.status(200).send(user)
     } catch (err) {
         next(err)
     }

@@ -2,6 +2,7 @@
 @use './auth' as *;
 @use './homeUser' as *;
 @use './homeGuest' as *;
+@use './footer' as *;
 
 .container {
   width: 1220px;

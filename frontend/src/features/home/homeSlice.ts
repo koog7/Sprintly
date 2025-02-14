@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {getProject} from "./homeThunk.ts";
+import {getProject, joinProject} from "./homeThunk.ts";
 import {RootState} from "../../app/store.ts";
 
 export interface HomeData{
@@ -42,7 +42,20 @@ export const homeSlice = createSlice({
             state.loader = true;
             state.error = action.payload as string;
         })
+
+        builder.addCase(joinProject.pending , (state: HomeState) => {
+            state.loader = true;
+            state.error = null;
+        }).addCase(joinProject.fulfilled , (state: HomeState, action) => {
+            state.projects = action.payload;
+            state.loader = false;
+            state.error = null;
+        }).addCase(joinProject.rejected , (state: HomeState, action) => {
+            state.loader = false;
+            state.error = action.payload as string;
+        })
     },
 })
 export const selectProjects = (state: RootState) => state.Home.projects;
+export const selectError = (state: RootState) => state.Home.error;
 export const HomeReducer = homeSlice.reducer;

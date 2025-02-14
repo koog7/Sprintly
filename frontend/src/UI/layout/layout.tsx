@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../header/header.tsx";
 import Container from "@mui/material/Container";
 
+
 const Layout: React.FC<React.PropsWithChildren> = ({ children }) => {
     return (
         <div>
@@ -14,6 +15,7 @@ const Layout: React.FC<React.PropsWithChildren> = ({ children }) => {
             >
                 {children}
             </Container>
+            {/*<Footer />*/}
         </div>
     );
 };

@@ -4,9 +4,10 @@ import { Modal, Input, Button, CloseButton } from "@mantine/core";
 interface JoinProjectModalProps {
     opened: boolean;
     onClose: () => void;
+    getCode: (code: string) => void;
 }
 
-const JoinProjectModal: React.FC<JoinProjectModalProps> = ({ opened, onClose }) => {
+const JoinProjectModal: React.FC<JoinProjectModalProps> = ({ opened, onClose , getCode}) => {
     const [value, setValue] = useState("");
 
     return (
@@ -26,7 +27,7 @@ const JoinProjectModal: React.FC<JoinProjectModalProps> = ({ opened, onClose }) 
                 }
             />
             <div style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}>
-                <Button variant="filled" color="lime" onClick={() => console.log(value)}>
+                <Button variant="filled" color="lime" onClick={() => getCode(value)}>
                     Вступить
                 </Button>
             </div>

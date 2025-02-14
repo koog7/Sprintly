@@ -1,0 +1,21 @@
+.footer-info {
+  display: grid;
+  grid-template:
+          'logo nav'
+          'logo rule' / 50% 400px;
+
+  &__logo{
+    border: 1px solid black;
+    grid-area: logo;
+  }
+
+  &__nav{
+    border: 1px solid black;
+    grid-area: nav;
+  }
+
+  &__rule{
+    border: 1px solid black;
+    grid-area: rule;
+  }
+}
